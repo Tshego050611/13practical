@@ -99,5 +99,66 @@ public class timeMethods{
         double binaryAveRuntime = binaryRunTime / repetitions;
         double binaryStdDeviation = Math.sqrt((binaryRunTime2 - repetitions * binaryAveRuntime * binaryAveRuntime) / (repetitions - 1));
   
+    // FINAL OUTPUT - exactly four numbers as required
+        System.out.println(fiveD.format(linearAveRuntime) + " " +
+                           fourD.format(linearStdDeviation) + " " +
+                           fiveD.format(binaryAveRuntime) + " " +
+                           fourD.format(binaryStdDeviation));
+    }
+   
+    // Perform 30 linear searches using the pre-generated keys
+    static void performLinearSearch() {
+        for (int i = 0; i < 30; i++) {
+            linearsearch(searchKeys[i], records);
+        }
+    }
+   
+    // Linear search for a single key
+    static void linearsearch(int key, Node[] arr) {
+        for (int i = 1; i <= N; i++) {
+            if (arr[i].key == key) {
+                return;
+            }
+        }
+    }
+   
+    // Perform 30 binary searches using the pre-generated keys
+    static void performBinarySearch() {
+        for (int i = 0; i < 30; i++) {
+            binarysearch(searchKeys[i], sortedRecords);
+        }
+    }
+   
+    // Binary search for a single key
+    static void binarysearch(int key, Node[] arr) {
+        int left = 1;
+        int right = N;
+       
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+           
+            if (arr[mid].key == key) {
+                return;
+            }
+            if (arr[mid].key < key) {
+                left = mid + 1;
+            } else {
+                right = mid - 1;
+            }
+        }
+    }
+}
+
+// Node class to store key-value pairs
+class Node {
+    int key;
+    String data;
+   
+    Node(int k, String d) {
+        key = k;
+        data = d;
+    }
+}
+
 
     
