@@ -40,6 +40,32 @@ public class timeMethods{
                 }
             }
             reader.close();
+          
+           // Fill any missing keys
+            for (int i = 1; i <= N; i++) {
+                if (records[i] == null) {
+                    records[i] = new Node(i, "");
+                }
+                sortedRecords[i] = records[i];
+            }
+           
+            // Sort for binary search (excluding index 0)
+            Arrays.sort(sortedRecords, 1, N + 1, (a, b) -> Integer.compare(a.key, b.key));
+           
+        } catch (FileNotFoundException e) {
+            System.out.println("Error: ulysses.numbered file not found!");
+            System.exit(1);
+        } catch (IOException e) {
+            System.out.println("Error reading file: " + e.getMessage());
+            System.exit(1);
+        }
+       
+        // Warm-up to ensure JIT compilation doesn't affect timings
+        for (int j = 0; j < 100; j++) {
+            int key = rand.nextInt(N) + 1;
+            linearsearch(key, records);
+            binarysearch(key, sortedRecords);
+        }
 
   
 
