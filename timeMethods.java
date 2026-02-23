@@ -66,7 +66,31 @@ public class timeMethods{
             linearsearch(key, records);
             binarysearch(key, sortedRecords);
         }
-
+    
+ // Main experiment loop
+        for(repetition = 0; repetition < repetitions; repetition++) {
+           
+            // Generate 30 random keys for this repetition
+            for (int j = 0; j < 30; j++) {
+                searchKeys[j] = rand.nextInt(N) + 1;
+            }
+           
+            // Time 30 linear searches
+            start = System.currentTimeMillis();
+            performLinearSearch();
+            finish = System.currentTimeMillis();
+            time = (double)(finish - start);
+            linearRunTime += time;
+            linearRunTime2 += (time * time);
+           
+            // Time 30 binary searches
+            start = System.currentTimeMillis();
+            performBinarySearch();
+            finish = System.currentTimeMillis();
+            time = (double)(finish - start);
+            binaryRunTime += time;
+            binaryRunTime2 += (time * time);
+        }
   
 
   
