@@ -91,6 +91,9 @@ public class timeMethods{
             binaryRunTime += time;
             binaryRunTime2 += (time * time);
         }
+     // Calculate statistics for linear search
+        double linearAveRuntime = linearRunTime / repetitions;
+        double linearStdDeviation = Math.sqrt((linearRunTime2 - repetitions * linearAveRuntime * linearAveRuntime) / (repetitions - 1));
   
 
   
