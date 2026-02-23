@@ -1,27 +1,33 @@
-import java.lang.Math.*; import java.io.*; import java.text.*;
-public class timeMethods{
-  public static int N = 32654;
-  public static Node[] records;
-  public static Node[] sortedRecords;
-  public static int[] searchKeys;
-  
-  public static void main(String args []){
-      // Initialize arrays
+import java.lang.Math.*;
+import java.io.*;
+import java.text.*;
+import java.util.*;
+
+public class timeMethods {
+   
+    public static int N = 32654;
+    public static Node[] records;
+    public static Node[] sortedRecords;
+    public static int[] searchKeys;
+   
+    public static void main(String args[]) {
+       
+        // Initialize arrays
         records = new Node[N + 1];
         sortedRecords = new Node[N + 1];
         searchKeys = new int[30];
-
-    DecimalFormat fourD = new DecimalFormat("0.0000");
-    DecimalFormat fiveD = new DecimalFormat("0.00000);
-
-    long start, finish; 
-    double linearRunTime = 0, lineaRunTime2 = 0, time;
-    double binaryRunTime = 0, binaryRunTime2 = 0
-      double time;
+       
+        DecimalFormat fourD = new DecimalFormat("0.0000");
+        DecimalFormat fiveD = new DecimalFormat("0.00000");
+       
+        long start, finish;
+        double linearRunTime = 0, linearRunTime2 = 0;
+        double binaryRunTime = 0, binaryRunTime2 = 0;
+        double time;
         int repetition, repetitions = 30;
         Random rand = new Random();
-    
-       // Read data from file
+       
+        // Read data from file
         try {
             BufferedReader reader = new BufferedReader(new FileReader("ulysses.numbered"));
             String line;
@@ -40,8 +46,8 @@ public class timeMethods{
                 }
             }
             reader.close();
-          
-           // Fill any missing keys
+           
+            // Fill any missing keys
             for (int i = 1; i <= N; i++) {
                 if (records[i] == null) {
                     records[i] = new Node(i, "");
@@ -66,8 +72,8 @@ public class timeMethods{
             linearsearch(key, records);
             binarysearch(key, sortedRecords);
         }
-    
- // Main experiment loop
+       
+        // Main experiment loop
         for(repetition = 0; repetition < repetitions; repetition++) {
            
             // Generate 30 random keys for this repetition
@@ -91,15 +97,16 @@ public class timeMethods{
             binaryRunTime += time;
             binaryRunTime2 += (time * time);
         }
-     // Calculate statistics for linear search
+       
+        // Calculate statistics for linear search
         double linearAveRuntime = linearRunTime / repetitions;
         double linearStdDeviation = Math.sqrt((linearRunTime2 - repetitions * linearAveRuntime * linearAveRuntime) / (repetitions - 1));
-  
- // Calculate statistics for binary search
+       
+        // Calculate statistics for binary search
         double binaryAveRuntime = binaryRunTime / repetitions;
         double binaryStdDeviation = Math.sqrt((binaryRunTime2 - repetitions * binaryAveRuntime * binaryAveRuntime) / (repetitions - 1));
-  
-    // FINAL OUTPUT - exactly four numbers as required
+       
+        // FINAL OUTPUT - exactly four numbers as required
         System.out.println(fiveD.format(linearAveRuntime) + " " +
                            fourD.format(linearStdDeviation) + " " +
                            fiveD.format(binaryAveRuntime) + " " +
@@ -159,6 +166,7 @@ class Node {
         data = d;
     }
 }
+
 
 
     
