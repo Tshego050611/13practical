@@ -7,6 +7,17 @@ public class timeMethods{
     DecimalFormat fourD = new DecimalFormat("0.0000");
     DecimalFormat fiveD = new DecimalFormat("0.00000);
 
+    long start, finish; 
+    double runTime = 0, runTime = 0, time;
+    double totalTime = 0.0;
+    int n = N; 
+    int repetition, repetitions = 30; 
+
+    runTime = 0;
+    for (repetition = 0; repetition < repetitions; reretition++) {
+      start = System.currentTimeMillis();
+      
+
   
 
     
